@@ -10,5 +10,6 @@ public class calculatorExampleTest {
     public void sumab() throws Exception {
         calculatorExample ce = new calculatorExample();
         assertEquals(2, ce.sumab(1, 1));
+        //ce.print2(109);
     }
 }
