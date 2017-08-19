@@ -56,8 +56,8 @@
       <file leaf-file-name="SimpleSpider.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SimpleSpider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="79" column="98" lean-forward="false" selection-start-line="79" selection-start-column="98" selection-end-line="79" selection-end-column="98" />
+            <state relative-caret-position="304">
+              <caret line="72" column="13" lean-forward="true" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1291#1299#0" expanded="true" />
@@ -136,8 +136,8 @@
         <option value="$PROJECT_DIR$/utsrc/calculatorExampleTest.java" />
         <option value="$PROJECT_DIR$/src/HanoiTower.java" />
         <option value="$PROJECT_DIR$/utsrc/HanoiTowerTest.java" />
-        <option value="$PROJECT_DIR$/src/SimpleSpider.java" />
         <option value="$PROJECT_DIR$/utsrc/SimpleSpiderTest.java" />
+        <option value="$PROJECT_DIR$/src/SimpleSpider.java" />
       </list>
     </option>
   </component>
@@ -249,7 +249,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.SimpleSpiderTest.getContentByUrl">
+  <component name="RunManager" selected="JUnit.SimpleSpiderTest">
     <configuration default="false" name="calculatorExampleTest.sumab" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="helloworld" />
@@ -562,8 +562,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.SimpleSpiderTest.getContentByUrl" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.SimpleSpiderTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.SimpleSpiderTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.SimpleSpiderTest.getContentByUrl" />
         <item index="2" class="java.lang.String" itemvalue="Application.SimpleSpider" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.HanoiTowerTest" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.calculatorExampleTest.sumab" />
@@ -590,8 +590,8 @@
     <history-entry file="SimpleSpiderTest - 2017.08.19 at 10h 17m 38s.xml">
       <configuration name="SimpleSpiderTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SimpleSpiderTest_getContentByUrl - 2017.08.19 at 10h 17m 12s.xml">
-      <configuration name="SimpleSpiderTest.getContentByUrl" configurationId="JUnit" />
+    <history-entry file="SimpleSpiderTest - 2017.08.19 at 11h 00m 50s.xml">
+      <configuration name="SimpleSpiderTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="SimpleSpiderTest_getContentByUrl - 2017.08.19 at 10h 17m 48s.xml">
       <configuration name="SimpleSpiderTest.getContentByUrl" configurationId="JUnit" />
@@ -750,8 +750,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SimpleSpider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="79" column="98" lean-forward="false" selection-start-line="79" selection-start-column="98" selection-end-line="79" selection-end-column="98" />
+        <state relative-caret-position="304">
+          <caret line="72" column="13" lean-forward="true" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1291#1299#0" expanded="true" />

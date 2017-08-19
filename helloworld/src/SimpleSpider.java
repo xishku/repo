@@ -65,19 +65,14 @@ public class SimpleSpider{
             // 输入流
             InputStream is = connection.getInputStream();
 
-            // 1K的数据缓冲
             byte[] bs = new byte[1024];
-            // 读取到的数据长度
             int len;
-            // 输出的文件流
             File sf = new File(path);
             if (!sf.exists()) {
                 sf.mkdirs();
             }
 
-            Calendar now = Calendar.getInstance();
-            System.out.println(now.getTimeInMillis());
-            OutputStream os = new FileOutputStream(sf.getPath() + "\\" + now.getTimeInMillis() + ".jpg");
+            OutputStream os = new FileOutputStream(sf.getPath() + "\\" + Calendar.getInstance().getTimeInMillis() + ".jpg");
 
             try {
                 while ((len = is.read(bs)) != -1) {
