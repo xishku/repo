@@ -56,11 +56,11 @@
       <file leaf-file-name="SimpleSpider.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SimpleSpider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="48" column="45" lean-forward="false" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="45" />
+            <state relative-caret-position="323">
+              <caret line="79" column="98" lean-forward="false" selection-start-line="79" selection-start-column="98" selection-end-line="79" selection-end-column="98" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1311#1319#0" expanded="true" />
+                <element signature="e#1291#1299#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,8 +82,8 @@
       <file leaf-file-name="SimpleSpiderTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/utsrc/SimpleSpiderTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="14" column="10" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+            <state relative-caret-position="342">
+              <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -590,36 +590,36 @@
     <history-entry file="SimpleSpiderTest - 2017.08.19 at 10h 17m 38s.xml">
       <configuration name="SimpleSpiderTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SimpleSpiderTest_getContentByUrl - 2017.08.19 at 10h 14m 39s.xml">
-      <configuration name="SimpleSpiderTest.getContentByUrl" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SimpleSpiderTest_getContentByUrl - 2017.08.19 at 10h 14m 55s.xml">
-      <configuration name="SimpleSpiderTest.getContentByUrl" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SimpleSpiderTest_getContentByUrl - 2017.08.19 at 10h 15m 28s.xml">
-      <configuration name="SimpleSpiderTest.getContentByUrl" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SimpleSpiderTest_getContentByUrl - 2017.08.19 at 10h 15m 55s.xml">
-      <configuration name="SimpleSpiderTest.getContentByUrl" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SimpleSpiderTest_getContentByUrl - 2017.08.19 at 10h 16m 14s.xml">
-      <configuration name="SimpleSpiderTest.getContentByUrl" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SimpleSpiderTest_getContentByUrl - 2017.08.19 at 10h 16m 24s.xml">
-      <configuration name="SimpleSpiderTest.getContentByUrl" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SimpleSpiderTest_getContentByUrl - 2017.08.19 at 10h 17m 02s.xml">
-      <configuration name="SimpleSpiderTest.getContentByUrl" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="SimpleSpiderTest_getContentByUrl - 2017.08.19 at 10h 17m 12s.xml">
       <configuration name="SimpleSpiderTest.getContentByUrl" configurationId="JUnit" />
     </history-entry>
     <history-entry file="SimpleSpiderTest_getContentByUrl - 2017.08.19 at 10h 17m 48s.xml">
       <configuration name="SimpleSpiderTest.getContentByUrl" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="SimpleSpiderTest_getContentByUrl - 2017.08.19 at 10h 34m 10s.xml">
+      <configuration name="SimpleSpiderTest.getContentByUrl" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SimpleSpiderTest_getContentByUrl - 2017.08.19 at 10h 34m 34s.xml">
+      <configuration name="SimpleSpiderTest.getContentByUrl" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SimpleSpiderTest_getContentByUrl - 2017.08.19 at 10h 54m 57s.xml">
+      <configuration name="SimpleSpiderTest.getContentByUrl" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SimpleSpiderTest_getContentByUrl - 2017.08.19 at 10h 56m 24s.xml">
+      <configuration name="SimpleSpiderTest.getContentByUrl" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SimpleSpiderTest_getContentByUrl - 2017.08.19 at 10h 56m 52s.xml">
+      <configuration name="SimpleSpiderTest.getContentByUrl" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SimpleSpiderTest_getContentByUrl - 2017.08.19 at 10h 57m 43s.xml">
+      <configuration name="SimpleSpiderTest.getContentByUrl" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SimpleSpiderTest_getContentByUrl - 2017.08.19 at 10h 58m 08s.xml">
+      <configuration name="SimpleSpiderTest.getContentByUrl" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="1" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -631,7 +631,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30366492" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30366492" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -750,19 +750,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SimpleSpider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="48" column="45" lean-forward="false" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="45" />
+        <state relative-caret-position="323">
+          <caret line="79" column="98" lean-forward="false" selection-start-line="79" selection-start-column="98" selection-end-line="79" selection-end-column="98" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1311#1319#0" expanded="true" />
+            <element signature="e#1291#1299#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utsrc/SimpleSpiderTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="14" column="10" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+        <state relative-caret-position="342">
+          <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
           <folding />
         </state>
       </provider>

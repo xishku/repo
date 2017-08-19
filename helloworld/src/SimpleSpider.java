@@ -1,7 +1,7 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -55,5 +55,63 @@ public class SimpleSpider{
         }
 
         return set;
+    }
+
+    public static void downloadFileToPath(String urlImg, String path){
+        try {
+            URL realUrl = new URL(urlImg);
+            URLConnection connection = realUrl.openConnection();
+            connection.setConnectTimeout(5 * 1000);
+            // 输入流
+            InputStream is = connection.getInputStream();
+
+            // 1K的数据缓冲
+            byte[] bs = new byte[1024];
+            // 读取到的数据长度
+            int len;
+            // 输出的文件流
+            File sf = new File(path);
+            if (!sf.exists()) {
+                sf.mkdirs();
+            }
+
+            Calendar now = Calendar.getInstance();
+            System.out.println(now.getTimeInMillis());
+            OutputStream os = new FileOutputStream(sf.getPath() + "\\" + now.getTimeInMillis() + ".jpg");
+
+            try {
+                while ((len = is.read(bs)) != -1) {
+                    os.write(bs, 0, len);
+                }
+            }
+            finally {
+                os.close();
+                is.close();
+            }
+
+        }catch (Exception e)
+            {
+                System.out.println("get exception！" + e);
+                e.printStackTrace();
+            }
+        }
+
+    public static String getQuotedStr(String input){
+        int pos = input.indexOf("http://");
+        if (pos > 0)
+        {
+            String tempStr = input.substring(pos);
+            int qpos = tempStr.indexOf("\"");
+            if (qpos > 0){
+                tempStr = tempStr.substring(0, qpos);
+            }
+
+            return tempStr;
+        }
+        else
+        {
+            return input;
+        }
+
     }
 }

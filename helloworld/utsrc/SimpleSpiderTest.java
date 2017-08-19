@@ -16,9 +16,8 @@ public class SimpleSpiderTest {
         Set<String> set = SimpleSpider.filterString(result, "data-big-img=\\\"(.+?)\\\"");
         for (String str:set
              ) {
-            System.out.println(str);
+            SimpleSpider.downloadFileToPath(SimpleSpider.getQuotedStr(str), "E:\\img");
         }
-
     }
 
 }
