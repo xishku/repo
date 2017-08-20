@@ -1,3 +1,5 @@
+import org.junit.Test;
+
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
@@ -6,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.GZIPInputStream;
 
 public class SimpleSpider{
 
@@ -17,11 +20,25 @@ public class SimpleSpider{
             URL realUrl = new URL(url);
             URLConnection connection = realUrl.openConnection();
             connection.connect();
-            in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+            String contentTypeStr = connection.getContentType();
+            System.out.println(connection.getContentEncoding());
+            String charsetName = getCharsetByContentTypeStr(contentTypeStr);
+
+            if (null != connection.getContentEncoding() && connection.getContentEncoding().equals("gzip")){
+                System.out.println("path gzip");
+                in = new BufferedReader(new InputStreamReader(new GZIPInputStream(connection.getInputStream()), charsetName));
+            }
+            else
+            {
+                in = new BufferedReader(new InputStreamReader(connection.getInputStream(), charsetName));
+            }
+
             String line;
+
             while ((line = in.readLine()) != null)
             {
-                result += line + "\n";
+               result += line + "\n";
             }
         } catch (Exception e)
         {
@@ -45,12 +62,23 @@ public class SimpleSpider{
         return result;
     }
 
+    private static String getCharsetByContentTypeStr(String contentTypeStr) {
+        int pos = contentTypeStr.indexOf("charset=");
+        if (pos > 0) {
+            String encodingStr = contentTypeStr.substring(pos + 8);
+            System.out.println(encodingStr);
+            return encodingStr;
+        }
+        return "";
+    }
+
     public static Set<String> filterString(String src, String filter){
         Set<String> set = new HashSet<String>();
         Pattern pattern = Pattern.compile(filter);
         Matcher matcher = pattern.matcher(src);
 
         while (matcher.find()){
+
             set.add(matcher.group(0));
         }
 
@@ -59,6 +87,8 @@ public class SimpleSpider{
 
     public static void downloadFileToPath(String urlImg, String path){
         try {
+
+            System.out.println("download:" + urlImg);
             URL realUrl = new URL(urlImg);
             URLConnection connection = realUrl.openConnection();
             connection.setConnectTimeout(5 * 1000);
@@ -108,5 +138,37 @@ public class SimpleSpider{
             return input;
         }
 
+    }
+
+
+    public static String uncompress(ByteArrayInputStream in,String charset) {
+        try {
+            GZIPInputStream gInputStream = new GZIPInputStream(in);
+            byte[] by = new byte[1024];
+            StringBuffer strBuffer = new StringBuffer();
+            int len = 0;
+            while ((len = gInputStream.read(by)) != -1) {
+                strBuffer.append( new String(by, 0, len,charset) );
+            }
+            return strBuffer.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void downloadAutohomeImg(String url) throws Exception {
+        if (url.isEmpty()){
+            return;
+        }
+
+        System.out.println("download:" + url);
+        String result = SimpleSpider.getContentByUrl(url);
+        Set<String> set = SimpleSpider.filterString(result, "src9=\\\"(.+?)\\\"");
+        for (String str:set
+                ) {
+            System.out.println(str);
+            SimpleSpider.downloadFileToPath(SimpleSpider.getQuotedStr(str), "E:\\img");
+        }
     }
 }
