@@ -12,7 +12,7 @@ import java.util.zip.GZIPInputStream;
 
 public class SimpleSpider{
 
-    public static String getContentByUrl(String url) {
+    public static String getContentByUrl(String url, String charsetStr) {
         BufferedReader in = null;
         String result = "";
         try
@@ -22,11 +22,15 @@ public class SimpleSpider{
             connection.connect();
 
             String contentTypeStr = connection.getContentType();
-            System.out.println(connection.getContentEncoding());
+            //System.out.println(connection.getContentEncoding());
             String charsetName = getCharsetByContentTypeStr(contentTypeStr);
 
+            if (charsetName.isEmpty()){
+                charsetName = charsetStr;
+            }
+
             if (null != connection.getContentEncoding() && connection.getContentEncoding().equals("gzip")){
-                System.out.println("path gzip");
+                //System.out.println("path gzip");
                 in = new BufferedReader(new InputStreamReader(new GZIPInputStream(connection.getInputStream()), charsetName));
             }
             else
@@ -78,7 +82,6 @@ public class SimpleSpider{
         Matcher matcher = pattern.matcher(src);
 
         while (matcher.find()){
-
             set.add(matcher.group(0));
         }
 
@@ -92,7 +95,6 @@ public class SimpleSpider{
             URL realUrl = new URL(urlImg);
             URLConnection connection = realUrl.openConnection();
             connection.setConnectTimeout(5 * 1000);
-            // 输入流
             InputStream is = connection.getInputStream();
 
             byte[] bs = new byte[1024];
@@ -157,18 +159,31 @@ public class SimpleSpider{
         return null;
     }
 
-    public static void downloadAutohomeImg(String url) throws Exception {
+    public static void downloadAutohomeImg(String url, String charsetStr) throws Exception {
         if (url.isEmpty()){
             return;
         }
 
         System.out.println("download:" + url);
-        String result = SimpleSpider.getContentByUrl(url);
+        String result = SimpleSpider.getContentByUrl(url, charsetStr);
         Set<String> set = SimpleSpider.filterString(result, "src9=\\\"(.+?)\\\"");
         for (String str:set
                 ) {
             System.out.println(str);
             SimpleSpider.downloadFileToPath(SimpleSpider.getQuotedStr(str), "E:\\img");
+        }
+    }
+
+    public static void batchDownloadAutohomeImg(String url) throws Exception {
+        System.out.println("process:" + url);
+        String result = SimpleSpider.getContentByUrl(url, "gb2312");
+        //System.out.println(result);
+        Set<String> set = SimpleSpider.filterString(result, "href=\\\"(.+?)\\\"");
+        for (String str:set
+                ) {
+            String urlFind = SimpleSpider.getQuotedStr(str);
+            //System.out.println(urlFind);
+            SimpleSpider.downloadAutohomeImg(urlFind, "gb2312");
         }
     }
 }
