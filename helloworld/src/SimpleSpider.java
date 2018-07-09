@@ -1,46 +1,48 @@
-import org.junit.Test;
-
 import java.io.*;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.*;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 
 public class SimpleSpider{
 
-    public static String getContentByUrl(String url, String charsetStr) {
+    public static String getContentByUrl(String loginUrl, String loginPara, String url, String charsetStr) {
         BufferedReader in = null;
         String result = "";
         try
         {
-            URL realUrl = new URL(url);
-            URLConnection connection = realUrl.openConnection();
+            Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("172.19.64.37", 8080));
+            HttpURLConnection connection = getLoginedConnection(loginUrl, loginPara, url, proxy);
+
             connection.connect();
 
+            System.out.println(connection.getURL().toString());
             String contentTypeStr = connection.getContentType();
-            //System.out.println(connection.getContentEncoding());
+            System.out.println(connection.getContentEncoding());
             String charsetName = getCharsetByContentTypeStr(contentTypeStr);
+
 
             if (charsetName.isEmpty()){
                 charsetName = charsetStr;
             }
 
             if (null != connection.getContentEncoding() && connection.getContentEncoding().equals("gzip")){
-                //System.out.println("path gzip");
+                System.out.println("path gzip");
                 in = new BufferedReader(new InputStreamReader(new GZIPInputStream(connection.getInputStream()), charsetName));
             }
             else
             {
+                System.out.println("not zip");
                 in = new BufferedReader(new InputStreamReader(connection.getInputStream(), charsetName));
             }
 
             String line;
 
-            while ((line = in.readLine()) != null)
+             while ((line = in.readLine()) != null)
             {
                result += line + "\n";
             }
@@ -51,6 +53,7 @@ public class SimpleSpider{
         }
         finally
         {
+            System.out.println("finally");
             try
             {
                 if (in != null)
@@ -64,6 +67,42 @@ public class SimpleSpider{
         }
 
         return result;
+    }
+
+    private static HttpURLConnection getLoginedConnection(String loginUrl, String loginPara, String targetUrl, Proxy proxy) throws IOException {
+        HttpURLConnection connection;
+
+        if (loginUrl.isEmpty()){
+            URL realUrl = new URL(targetUrl);
+            connection = (HttpURLConnection)realUrl.openConnection(proxy);
+            return connection;
+        }
+
+        URL logUrl = new URL(loginUrl);
+        connection = (HttpURLConnection)logUrl.openConnection(proxy);
+        connection.setFollowRedirects(false);
+        connection.setInstanceFollowRedirects(false);
+        connection.setDoOutput(true);
+        connection.setDoInput(true);
+        connection.setRequestProperty("User-Agent","Mozilla/5.0 (compatible; MSIE 6.0; Windows NT)");
+        connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+
+        PrintStream send = new PrintStream(connection.getOutputStream());
+        send.print(loginPara);
+        send.close();
+
+        String cookies = getCookies(connection);
+        System.out.println(cookies);
+        connection.disconnect();
+
+        URL tarURL = new URL(targetUrl);
+        connection = (HttpURLConnection) tarURL.openConnection();
+        connection.setRequestProperty("User-Agent", "Mozilla/5.0 (compatible; MSIE 6.0; Windows NT)");
+        connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+        connection.setRequestProperty("Cookie", cookies);
+        connection.setDoInput(true);
+
+        return connection;
     }
 
     private static String getCharsetByContentTypeStr(String contentTypeStr) {
@@ -124,22 +163,9 @@ public class SimpleSpider{
         }
 
     public static String getQuotedStr(String input){
-        int pos = input.indexOf("http://");
-        if (pos > 0)
-        {
-            String tempStr = input.substring(pos);
-            int qpos = tempStr.indexOf("\"");
-            if (qpos > 0){
-                tempStr = tempStr.substring(0, qpos);
-            }
-
-            return tempStr;
-        }
-        else
-        {
-            return input;
-        }
-
+        int pos = input.indexOf("\"");
+        String tmpStr = input.substring(pos);
+        return tmpStr.replaceAll("\"", "");
     }
 
 
@@ -164,19 +190,19 @@ public class SimpleSpider{
             return;
         }
 
-        System.out.println("download:" + url);
-        String result = SimpleSpider.getContentByUrl(url, charsetStr);
+        System.out.println("downloadAutohomeImg:" + url);
+        String result = SimpleSpider.getContentByUrl("","", url, charsetStr);
         Set<String> set = SimpleSpider.filterString(result, "src9=\\\"(.+?)\\\"");
         for (String str:set
                 ) {
             System.out.println(str);
-            SimpleSpider.downloadFileToPath(SimpleSpider.getQuotedStr(str), "E:\\img");
+            SimpleSpider.downloadFileToPath(SimpleSpider.getQuotedStr(str), "F:\\img");
         }
     }
 
     public static void batchDownloadAutohomeImg(String url) throws Exception {
         System.out.println("process:" + url);
-        String result = SimpleSpider.getContentByUrl(url, "gb2312");
+        String result = SimpleSpider.getContentByUrl("", "", url, "gb2312");
         //System.out.println(result);
         Set<String> set = SimpleSpider.filterString(result, "href=\\\"(.+?)\\\"");
         for (String str:set
@@ -185,5 +211,17 @@ public class SimpleSpider{
             //System.out.println(urlFind);
             SimpleSpider.downloadAutohomeImg(urlFind, "gb2312");
         }
+    }
+
+    public static String getCookies(HttpURLConnection conn) {
+        StringBuffer cookies = new StringBuffer();
+        String headName;
+        for (int i = 7; (headName = conn.getHeaderField(i)) != null; i++) {
+            StringTokenizer st = new StringTokenizer(headName, "; ");
+            while (st.hasMoreTokens()) {
+                cookies.append(st.nextToken() + "; ");
+            }
+        }
+        return cookies.toString();
     }
 }
