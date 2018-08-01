@@ -7,25 +7,35 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
-
 public class SimpleSpider{
 
-    public static String getContentByUrl(String loginUrl, String loginPara, String url, String charsetStr) {
+    private Proxy m_proxy;
+    protected Proxy getProxy()
+    {
+        return  m_proxy;
+    }
+
+    public SimpleSpider(Proxy proxy)
+    {
+        m_proxy = proxy;
+    }
+
+    public SimpleSpider()
+    {
+        m_proxy = null;
+    }
+
+    public String getContentByUrl(String url, String charsetStr) {
         BufferedReader in = null;
         String result = "";
         try
         {
-            Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("172.19.64.37", 8080));
-            HttpURLConnection connection = getLoginedConnection(loginUrl, loginPara, url, proxy);
-
+            HttpURLConnection connection = getUrlConnection(url);
             connection.connect();
-
             System.out.println(connection.getURL().toString());
             String contentTypeStr = connection.getContentType();
             System.out.println(connection.getContentEncoding());
             String charsetName = getCharsetByContentTypeStr(contentTypeStr);
-
-
             if (charsetName.isEmpty()){
                 charsetName = charsetStr;
             }
@@ -41,7 +51,6 @@ public class SimpleSpider{
             }
 
             String line;
-
              while ((line = in.readLine()) != null)
             {
                result += line + "\n";
@@ -69,39 +78,16 @@ public class SimpleSpider{
         return result;
     }
 
-    private static HttpURLConnection getLoginedConnection(String loginUrl, String loginPara, String targetUrl, Proxy proxy) throws IOException {
+    protected HttpURLConnection getUrlConnection(String targetUrl) throws IOException {
         HttpURLConnection connection;
-
-        if (loginUrl.isEmpty()){
-            URL realUrl = new URL(targetUrl);
-            connection = (HttpURLConnection)realUrl.openConnection(proxy);
-            return connection;
+        URL realUrl = new URL(targetUrl);
+        if (null != getProxy()) {
+            connection = (HttpURLConnection) realUrl.openConnection(getProxy());
         }
-
-        URL logUrl = new URL(loginUrl);
-        connection = (HttpURLConnection)logUrl.openConnection(proxy);
-        connection.setFollowRedirects(false);
-        connection.setInstanceFollowRedirects(false);
-        connection.setDoOutput(true);
-        connection.setDoInput(true);
-        connection.setRequestProperty("User-Agent","Mozilla/5.0 (compatible; MSIE 6.0; Windows NT)");
-        connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
-
-        PrintStream send = new PrintStream(connection.getOutputStream());
-        send.print(loginPara);
-        send.close();
-
-        String cookies = getCookies(connection);
-        System.out.println(cookies);
-        connection.disconnect();
-
-        URL tarURL = new URL(targetUrl);
-        connection = (HttpURLConnection) tarURL.openConnection();
-        connection.setRequestProperty("User-Agent", "Mozilla/5.0 (compatible; MSIE 6.0; Windows NT)");
-        connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
-        connection.setRequestProperty("Cookie", cookies);
-        connection.setDoInput(true);
-
+        else
+        {
+            connection = (HttpURLConnection) realUrl.openConnection();
+        }
         return connection;
     }
 
@@ -119,7 +105,6 @@ public class SimpleSpider{
         Set<String> set = new HashSet<String>();
         Pattern pattern = Pattern.compile(filter);
         Matcher matcher = pattern.matcher(src);
-
         while (matcher.find()){
             set.add(matcher.group(0));
         }
@@ -135,7 +120,6 @@ public class SimpleSpider{
             URLConnection connection = realUrl.openConnection();
             connection.setConnectTimeout(5 * 1000);
             InputStream is = connection.getInputStream();
-
             byte[] bs = new byte[1024];
             int len;
             File sf = new File(path);
@@ -144,7 +128,6 @@ public class SimpleSpider{
             }
 
             OutputStream os = new FileOutputStream(sf.getPath() + "\\" + Calendar.getInstance().getTimeInMillis() + ".jpg");
-
             try {
                 while ((len = is.read(bs)) != -1) {
                     os.write(bs, 0, len);
@@ -185,13 +168,13 @@ public class SimpleSpider{
         return null;
     }
 
-    public static void downloadAutohomeImg(String url, String charsetStr) throws Exception {
+    public void downloadAutohomeImg(String url, String charsetStr) throws Exception {
         if (url.isEmpty()){
             return;
         }
 
         System.out.println("downloadAutohomeImg:" + url);
-        String result = SimpleSpider.getContentByUrl("","", url, charsetStr);
+        String result = this.getContentByUrl(url, charsetStr);
         Set<String> set = SimpleSpider.filterString(result, "src9=\\\"(.+?)\\\"");
         for (String str:set
                 ) {
@@ -200,16 +183,16 @@ public class SimpleSpider{
         }
     }
 
-    public static void batchDownloadAutohomeImg(String url) throws Exception {
+    public void batchDownloadAutohomeImg(String url) throws Exception {
         System.out.println("process:" + url);
-        String result = SimpleSpider.getContentByUrl("", "", url, "gb2312");
+        String result = this.getContentByUrl(url, "gb2312");
         //System.out.println(result);
         Set<String> set = SimpleSpider.filterString(result, "href=\\\"(.+?)\\\"");
         for (String str:set
                 ) {
             String urlFind = SimpleSpider.getQuotedStr(str);
             //System.out.println(urlFind);
-            SimpleSpider.downloadAutohomeImg(urlFind, "gb2312");
+            this.downloadAutohomeImg(urlFind, "gb2312");
         }
     }
 
