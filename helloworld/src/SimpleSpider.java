@@ -25,6 +25,7 @@ public class SimpleSpider{
         m_proxy = null;
     }
 
+    //get content string by url without any operation
     public String getContentByUrl(String url, String charsetStr) {
         BufferedReader in = null;
         String result = "";
@@ -112,6 +113,7 @@ public class SimpleSpider{
         return set;
     }
 
+    //download and save img file to path
     public static void downloadFileToPath(String urlImg, String path){
         try {
 
