@@ -96,26 +96,35 @@ public class SimpleSpiderTest {
         }
     }
 
+    @Test
+    public void testQuotedStr() throws Exception {
+        SimpleSpider spider = new SimpleSpider();
+        assertEquals("https://club.autohome.com.cn/JingXuan/104/5",
+                spider.getQuotedStr("https://club.autohome.com.cn/JingXuan/104/5"));
+
+    }
 
     @Test
     public void batchDownloadAutohomeImg() throws Exception {
-        String url = "https://club.autohome.com.cn/jingxuan/104";
+        String url = "https://club.autohome.com.cn/JingXuan/104";
         //Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyIP, proxyPort));
         SimpleSpider spider = new SimpleSpider();
         String result = spider.getContentByUrl(url, "gb2312");
         //System.out.println(result);
-        Set<String> set = spider.filterString(result, "href=\\\"(.+?)\\\"");
+        Set<String> set = spider.filterString(result, "href=\\\"//club.autohome.com.cn/bbs/thread/(.+?)\\\"");
         for (String str:set
                 ) {
             System.out.println(str);
             String urlFind = spider.getQuotedStr(str);
-            if (!urlFind.contains(":") && !urlFind.startsWith("//"))
+            if (!urlFind.contains("https:"))
             {
                 System.out.println("inserted");
-                urlFind = "https://club.autohome.com.cn".concat(urlFind);
+                urlFind = "https:".concat(urlFind);
             }
             System.out.println(urlFind);
             spider.downloadAutohomeImg(urlFind, "gb2312");
+
+            //break;
         }
     }
 

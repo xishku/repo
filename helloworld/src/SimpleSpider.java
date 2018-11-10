@@ -149,7 +149,14 @@ public class SimpleSpider{
 
     public static String getQuotedStr(String input){
         int pos = input.indexOf("\"");
-        String tmpStr = input.substring(pos);
+        String tmpStr;
+        if (pos > 0) {
+            tmpStr = input.substring(pos);
+        }
+        else
+        {
+            tmpStr = input;
+        }
         return tmpStr.replaceAll("\"", "");
     }
 
