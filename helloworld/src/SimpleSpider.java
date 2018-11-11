@@ -103,14 +103,7 @@ public class SimpleSpider{
     }
 
     public static Set<String> filterString(String src, String filter){
-        Set<String> set = new HashSet<String>();
-        Pattern pattern = Pattern.compile(filter);
-        Matcher matcher = pattern.matcher(src);
-        while (matcher.find()){
-            set.add(matcher.group(0));
-        }
-
-        return set;
+        return RegularUtils.filterString(src, filter);
     }
 
     //download and save img file to path

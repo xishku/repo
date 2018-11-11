@@ -2,6 +2,8 @@ import org.junit.Test;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import static org.junit.Assert.*;
 /**
@@ -122,10 +124,59 @@ public class SimpleSpiderTest {
                 urlFind = "https:".concat(urlFind);
             }
             System.out.println(urlFind);
-            spider.downloadAutohomeImg(urlFind, "gb2312");
+            //spider.downloadAutohomeImg(urlFind, "gb2312");
 
             //break;
         }
+    }
+
+    @Test
+    public void batchDownloadLianjia() throws Exception {
+        String url = "https://sh.lianjia.com/ershoufang/";
+        //Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyIP, proxyPort));
+        SimpleSpider spider = new SimpleSpider();
+        String result = spider.getContentByUrl(url, "gb2312");
+        //System.out.println(result);
+        Set<String> set = spider.filterString(result, "href=\\\"https://sh.lianjia.com/ershoufang/(.+?)\\\"");
+        List<String> pageLst = new ArrayList();
+        for (String str:set
+        ) {
+            System.out.println(str);
+            String urlFind = spider.getQuotedStr(str);
+            if (!urlFind.contains("https:"))
+            {
+                System.out.println("inserted");
+                urlFind = "https:".concat(urlFind);
+            }
+            if (urlFind.endsWith(".html")){
+                pageLst.add(urlFind);
+                System.out.println(urlFind);
+
+                String housePage = spider.getContentByUrl(urlFind, "gb2312");
+                System.out.println(housePage);
+                System.out.println("showPageContent");
+
+                PageHtmlHelper hper = new PageHtmlHelper(result);
+                hper.showPageContent();
+
+                break;
+            }
+
+            //spider.downloadAutohomeImg(urlFind, "gb2312");
+
+            //break;
+        }
+    }
+
+    @Test
+    public void batchDownloadSinglePageLianjia() throws Exception {
+        String url = "https://sh.lianjia.com/ershoufang/107000973803.html";
+        //Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyIP, proxyPort));
+        SimpleSpider spider = new SimpleSpider();
+        String result = spider.getContentByUrl(url, "gb2312");
+        //System.out.println(result);
+        PageHtmlHelper hper = new PageHtmlHelper(result);
+        hper.showPageContent();
     }
 
     @Test
