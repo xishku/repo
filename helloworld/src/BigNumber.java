@@ -1,3 +1,5 @@
+import sun.font.TrueTypeFont;
+
 /**
  * Created by ms-sh on 2018/12/27.
  */
@@ -18,6 +20,8 @@ public class BigNumber {
     public BigNumber MultipleBigNumer(BigNumber otherNum)
     {
         final int len = m_BigNumStr.length() + otherNum.m_BigNumStr.length();
+        final String revLeftNumStr = (new StringBuilder(m_BigNumStr)).reverse().toString();
+        final String revRightNumStr = (new StringBuilder(otherNum.m_BigNumStr)).reverse().toString();
         int rstNum[] = new int[len];
         for ( int i = 0 ; i < len; ++i )
         {
@@ -25,14 +29,14 @@ public class BigNumber {
         }
 
 
-        for(int i =  m_BigNumStr.length() - 1; i >= 0 ; --i)
+        for(int i = 0; i <  revLeftNumStr.length(); ++i)
         {
-            char leftChar = m_BigNumStr.charAt(i);
+            char leftChar = revLeftNumStr.charAt(i);
             if (leftChar <= '9' && leftChar >= '0')
             {
-                for(int j = otherNum.m_BigNumStr.length() - 1; j >= 0; --j)
+                for(int j = 0; j < revRightNumStr.length(); ++j)
                 {
-                    char rightChar = otherNum.m_BigNumStr.charAt(j);
+                    char rightChar = revRightNumStr.charAt(j);
                     if ( rightChar <= '9' && rightChar >= '0')
                     {
                         rstNum[i + j] += (leftChar - '0') * (rightChar - '0');
@@ -53,18 +57,36 @@ public class BigNumber {
             }
         }
 
-        for ( int i = len - 1 ; i > 0; --i )
+        for ( int i = 0; i < len - 1 ; ++i )
         {
             System.out.println("now cal No.".concat(Integer.toString(i)));
-            rstNum[i - 1] += rstNum[i] / 10;
+            rstNum[i + 1] += rstNum[i] / 10;
             rstNum[i] = rstNum[i] % 10;
         }
 
+
         String rstStr = "";
-        for ( int i = 0; i < len; ++i )
+        for ( int i = len - 1; i >= 0; --i )
         {
             System.out.println(rstNum[i]);
-            rstStr.concat(Integer.toString(rstNum[i]));
+            rstStr = rstStr.concat(Integer.toString(rstNum[i]));
+        }
+
+        while (!rstStr.isEmpty())
+        {
+            if (rstStr.startsWith("0"))
+            {
+                rstStr = rstStr.substring(1, rstStr.length());
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        if (rstStr.isEmpty())
+        {
+            rstStr = "0";
         }
 
         System.out.println(rstStr);

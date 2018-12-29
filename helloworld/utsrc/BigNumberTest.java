@@ -8,10 +8,13 @@ import static org.junit.Assert.*;
 public class BigNumberTest {
     @Test
     public void multipleBigNumer() throws Exception {
-        BigNumber num1 = new BigNumber("11");
-        BigNumber num2 = new BigNumber("11");
+        BigNumber num1 = new BigNumber("999999999999999999");
+        BigNumber num2 = new BigNumber("999999999999999999");
         BigNumber num3 = num1.MultipleBigNumer(num2);
         System.out.println(num3.getNumber());
+        assertEquals("999999999999999998000000000000000001", num3.getNumber());
+        assertEquals("0",(new BigNumber("0")).MultipleBigNumer(new BigNumber("100")).getNumber());
+        assertEquals("9801",(new BigNumber("99")).MultipleBigNumer(new BigNumber("99")).getNumber());
     }
 
 }
