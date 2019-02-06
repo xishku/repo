@@ -6,4 +6,5 @@ git init
 git clone git@github.com:xishku/repo.git
 git remote add origin git@github.com:xishku/repo.git
 
+git pull origin master
 
