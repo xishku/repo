@@ -13,16 +13,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Assert.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/helloworld/junit-4.8.2.jar!/junit/framework/Assert.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TestSetup.class" pinned="false" current-in-tab="false">
         <entry file="jar://$PROJECT_DIR$/helloworld/junit-4.8.2.jar!/junit/extensions/TestSetup.class">
           <provider selected="true" editor-type-id="text-editor">
@@ -86,8 +76,18 @@
       <file leaf-file-name="BigNumberTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/helloworld/utsrc/BigNumberTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="18" column="85" lean-forward="false" selection-start-line="18" selection-start-column="85" selection-end-line="18" selection-end-column="85" />
+            <state relative-caret-position="342">
+              <caret line="20" column="46" lean-forward="false" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BigNumber.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/helloworld/src/BigNumber.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="361">
+              <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -515,6 +515,15 @@
     <history-entry file="BigNumberTest_multipleBigNumer - 2019.02.17 at 16h 02m 32s.xml">
       <configuration name="BigNumberTest.multipleBigNumer" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="BigNumberTest_multipleBigNumer - 2019.02.17 at 16h 05m 22s.xml">
+      <configuration name="BigNumberTest.multipleBigNumer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BigNumberTest_multipleBigNumer - 2019.02.17 at 16h 07m 18s.xml">
+      <configuration name="BigNumberTest.multipleBigNumer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BigNumberTest_multipleBigNumer - 2019.02.17 at 16h 09m 36s.xml">
+      <configuration name="BigNumberTest.multipleBigNumer" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="HanoiTowerTest_printHanoidTowerSteps - 2018.12.21 at 21h 19m 23s.xml">
       <configuration name="HanoiTowerTest.printHanoidTowerSteps" configurationId="JUnit" />
     </history-entry>
@@ -524,7 +533,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -570,14 +578,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2660">
-          <caret line="140" column="6" lean-forward="false" selection-start-line="140" selection-start-column="6" selection-end-line="140" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/helloworld/src/MyThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -950,10 +950,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/helloworld/src/BigNumber.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/helloworld/utsrc/BigNumberTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="18" column="85" lean-forward="false" selection-start-line="18" selection-start-column="85" selection-end-line="18" selection-end-column="85" />
+        <state relative-caret-position="342">
+          <caret line="20" column="46" lean-forward="false" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
           <folding />
         </state>
       </provider>
