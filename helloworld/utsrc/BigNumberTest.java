@@ -15,6 +15,8 @@ public class BigNumberTest {
         assertEquals("999999999999999998000000000000000001", num3.getNumber());
         assertEquals("0",(new BigNumber("0")).MultipleBigNumer(new BigNumber("100")).getNumber());
         assertEquals("9801",(new BigNumber("99")).MultipleBigNumer(new BigNumber("99")).getNumber());
+
+        System.out.println((new BigNumber("256")).MultipleBigNumer(new BigNumber("256")).getNumber());
     }
 
 }
