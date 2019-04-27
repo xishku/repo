@@ -27,4 +27,3 @@ def pos1(x, y):
 
 x, y = pos1(100, 200)
 print(x, y)
-
