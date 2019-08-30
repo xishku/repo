@@ -1,3 +1,4 @@
+
 import static java.lang.String.valueOf;
 
 public class HwTest {
@@ -15,10 +16,15 @@ public class HwTest {
     }
 
     public static void main(String args[]) {
+        bigLoop();
+
+    }
+
+    public static void bigLoop() {
         //tst
         long num = 100;
         System.out.println("Hello World!");
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 9; i++) {
             num *= 10;
             System.out.println(valueOf(num).concat("         ").concat(valueOf(testLoop(num))));
         }
