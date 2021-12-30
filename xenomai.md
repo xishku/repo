@@ -63,6 +63,19 @@ sudo make menuconfig
 
 5.3进入Drivers--->RTnet--->Add-ons--->Real-Time Capturing Support(new)(switch on)[] to [M] 启用驱动
 
+==============
+https://stackoverflow.com/questions/40344484/cant-load-self-compiled-linux-kernel
+Power management and ACPI options --->
+    [*] ACPI (Advanced Configuration and Power Interface) Support --->
+Processor type and features  --->
+    [*] EFI runtime service support 
+    [*]   EFI stub support
+Firmware Drivers  --->
+   EFI (Extensible Firmware Interface) Support  --->
+       <*> EFI Variable Support via sysfs
+       
+==============
+
 2.2.2	参考配置2
 下面是另一篇博文的设置：
 https://blog.csdn.net/weixin_48395629/article/details/115443166?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-2.no_search_link&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-2.no_search_link
