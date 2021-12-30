@@ -243,6 +243,17 @@ sudo update-grub
 sudo reboot
 
 参考配置1+2，最后的截图：
+$ uname -a
+Linux 5.4.105 #2 SMP Thu Dec 30 14:49:12 CST 2021 x86_64 x86_64 x86_64 GNU/Linux
+$ dmesg | grep Xenomai
+[    0.840212] [Xenomai] scheduling class idle registered.
+[    0.840213] [Xenomai] scheduling class rt registered.
+[    0.840239] [Xenomai] SMI-enabled chipset found, but SMI workaround disabled
+[    0.840277] I-pipe: head domain Xenomai registered.
+[    0.840948] [Xenomai] allowing access to group 1234
+[    0.840967] [Xenomai] Cobalt v3.1.2 
+
+
  
 
 参考配置3，最后的截图。
